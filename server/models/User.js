@@ -9,12 +9,19 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
   password: {
     type: String,
     required: true,
-    minLength: 5
+    minLength: 5,
+    trim: true,
   },
-  CoOp: {
+  coOp: {
     type: Schema.Types.ObjectId,
     ref: "CoOp",
   },

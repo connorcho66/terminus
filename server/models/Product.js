@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const productSchema = new Schema({
-    productId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId()
-    },
+    // productId: {
+    //     type: Schema.Types.ObjectId,
+    //     default: () => new Types.ObjectId()
+    // },
     name: {
         type: String,
         required: true,
