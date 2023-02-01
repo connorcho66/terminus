@@ -46,7 +46,7 @@ import {
           bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
           <Stack maxW={'2xl'} align={'flex-start'} spacing={6}>
             <Text
-              color={'white'}
+              color={'greys.200'}
               fontWeight={700}
               lineHeight={1.2}
             //   fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}
