@@ -1,7 +1,16 @@
 import React from 'react';
-// import './App.css';
-import { extendTheme, ChakraProvider } from '@chakra-ui/react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import custom fonts
+import "@fontsource/nosifer";
+import "@fontsource/butcherman";
+import "@fontsource/frijole";
+import "@fontsource/major-mono-display";
+import "@fontsource/nosifer";
+import "@fontsource/noto-serif-ahom";
+// Chakra provider
+import { ChakraProvider } from '@chakra-ui/react';
+// custom theme 
+import theme from './theme/theme';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -12,9 +21,9 @@ import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
 
-const colors = {}
+// const colors = {}
 
-const theme = extendTheme({ colors });
+// const theme = extendTheme({ colors });
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -40,13 +49,14 @@ function App() {
   return (
   <ChakraProvider theme={theme}>
     <ApolloProvider client={client}>
-    <Router>
-      <div>
+      <Home />
+    {/* <Router> */}
+      {/* <div>
         <Routes>
           <Route 
             path="/" 
             element={<Home />}
-          />
+          /> */}
           {/* <Route 
             path="/coop" 
             element={<CoOp />}
@@ -55,9 +65,9 @@ function App() {
             path="/Profile/:id" 
             element={<Profile />}
           /> */}
-        </Routes>
+        {/* </Routes>
       </div>
-    </Router>
+    </Router> */}
   </ApolloProvider>
 </ChakraProvider>
   );
