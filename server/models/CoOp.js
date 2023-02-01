@@ -6,11 +6,11 @@ const coOpSchema = new Schema({
         required: true,
     },
     users: [{
-        type: Schema.Type.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User'
     }],
     inventory: [{
-        type: Schema.Type.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Product'
     }]
 });
