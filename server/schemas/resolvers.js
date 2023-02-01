@@ -33,7 +33,7 @@ const resolvers = {
 
     //find user based on username
     user: async (parent, args) => {
-      return User.findOne({ username: args.username });
+      return User.findOne({ username: args.username }).populate("coOp");
     },
 
     //returns all users
@@ -44,7 +44,7 @@ const resolvers = {
     //returns profile of signed in user
     me: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findOne({ _id: context.user._id });
+        const user = await User.findOne({ _id: context.user._id }).populate('coOp');
 
         return user;
       }
