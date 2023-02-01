@@ -20,6 +20,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
+import Shop from './pages/Shop'
 
 // const colors = {}
 
