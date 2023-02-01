@@ -61,9 +61,14 @@ const typeDefs = gql`
         me: User
         checkout(products: [ID]!): Checkout
         order(_id: ID!): Order
+        users: [User]
     }
 
     type Mutation {
+        addBadge(name: String): Badge
+        addBadgeToUser(badgeId: ID!, userId: ID!): User
+        addCategory(name: String): Category
+        addProduct(name: String, price: Float, category: ID): Product
         addUser(username: String!, email: String!, password: String!): Auth
         addOrder(products: [ID]!): Order
         updateUser(username: String, email: String, password: String): User
