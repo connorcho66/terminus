@@ -55,7 +55,7 @@ import {
               fontFamily='h1'>
               Termin<Text as='span' color={'#171923'}>us</Text>
             </Text>
-            <Stack direction={'row'}>
+            <Stack direction={'row'} align={'center'}>
               <Button
                 bg={'red.800'}
                 rounded={'full'}
