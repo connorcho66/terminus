@@ -54,8 +54,8 @@ const Cart = () => {
     const productIds = [];
 
     state.cart.forEach((item) => {
+        // console.log(item);
       productIds.push(item._id);
-      console.log(productIds);
     });
 
     getCheckout({
