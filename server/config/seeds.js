@@ -180,8 +180,6 @@ db.once('open', async () => {
 
     console.log('Badge seeded');
 
-    process.exit();
-
 });
 
 db.once('open', async () => {
