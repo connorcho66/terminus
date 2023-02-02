@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { SlBasket } from 'react-icons/sl';
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CHECKOUT } from "../utils/queries";
@@ -6,6 +7,9 @@ import { QUERY_CHECKOUT } from "../utils/queries";
 import Auth from "../utils/auth.js";
 import { TOGGLE_CART} from "../utils/actions";
 import { useShopContext } from "../utils/ShopContext";
+import { 
+  Box,
+  Text } from "@chakra-ui/react";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
@@ -49,23 +53,32 @@ const Cart = () => {
 
   if (!state.cartOpen) {
     return (
-      <div className="cart-closed" onClick={toggleCart}>
-        <span role="img" aria-label="trash">
-          🛒
-        </span>
-      </div>
+      <Box className="cart-closed" onClick={toggleCart} color={'red.800'} fontSize='40px' textAlign={'right'}>
+        <SlBasket />
+      </Box>
     );
-  } else {
+  } 
+  else {
     return (
+      // Box el
       <span role="img" aria-label="trash">
         <div className="close" onClick={toggleCart}>
           [close]
         </div>
         {state.cart.map((item, index) => (
           <p key={index}>{item.name}</p>
+          // divider component
         ))}
+        {/* spacer */}
+
+        {/* wrap in Box */}
         Total ${calculateTotal()}
-        {Auth.loggedIn() ? (<button onClick={submitCheckout}>Checkout</button>) : (<h1>Please login</h1>)}
+
+        {Auth.loggedIn() ? (
+        <button onClick={submitCheckout}>Checkout</button>
+        ) : (
+          // make Text el
+        <h1>Please login</h1>)}
       </span> 
     );
   }
