@@ -14,7 +14,7 @@ const Shop = () => {
     console.log(error);
   }
   return (
-    <Box as="main" padding='1rem' height='100vh' backgroundColor='RGBA(0, 0, 0, 0.80)'>
+    <Box as="main" padding='1rem' backgroundColor='RGBA(0, 0, 0, 0.80)'>
         <h1>Shop:</h1>
       {loading ? (<div>Loading...</div>) : (
         <ProductList products={products} />

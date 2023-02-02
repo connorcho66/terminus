@@ -7,16 +7,13 @@ export default function Product({ product }) {
   // const [state, dispatch] = useShopContext()
 
   return (
-    <Box color={"white"} padding='1rem' borderWidth="1px">
+    <Box color={"white"} borderWidth="1px">
       {/* Cart: {state.cart.length} */}
       <Image src={product.image} />
       {product.name}
       <Box
         mt="1"
         fontWeight="semibold"
-        as="h4"
-        lineHeight="tight"
-        isTruncated
       >
         {product.description}
       </Box>
