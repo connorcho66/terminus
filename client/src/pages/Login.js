@@ -16,6 +16,7 @@ import {
     Container,
     Box,
     Button,
+    Link
   } from '@chakra-ui/react';
 
 function Login(props) {
@@ -94,6 +95,12 @@ function Login(props) {
                         fontFamily='h2'>
                         login
                     </Button>
+                    <Box pt={3}>
+                        New to our store?{" "}
+                        <Link color="teal.500" href="/signup">
+                        Signup
+                        </Link>
+                    </Box>
                 </Box>
             </Container>
           </Stack>
