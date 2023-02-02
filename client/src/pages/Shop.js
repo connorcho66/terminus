@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { QUERY_ALL_PRODUCTS } from "../utils/queries";
 import ProductList from '../components/ProductList'
+import { Box } from "@chakra-ui/react";
 
 
 const Shop = () => {
@@ -13,12 +14,12 @@ const Shop = () => {
     console.log(error);
   }
   return (
-    <main bgColor >
+    <Box as="main" padding='1rem' height='100vh' backgroundColor='RGBA(0, 0, 0, 0.80)'>
         <h1>Shop:</h1>
       {loading ? (<div>Loading...</div>) : (
         <ProductList products={products} />
       )}
-    </main>
+    </Box>
   );
 };
 

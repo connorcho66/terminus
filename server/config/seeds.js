@@ -127,7 +127,7 @@ db.once('open', async () => {
             stock: 15,
             price: 79.99,
             image: 'land-mine.jpg',
-            category: categories[5]._id
+            category: categories[4]._id
         },
     ]);
 
