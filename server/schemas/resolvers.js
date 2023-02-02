@@ -52,7 +52,7 @@ const resolvers = {
       // throw new AuthenticationError("Not logged in");
     },
     checkout: async (parent, args, context) => {
-      // const url = new URL(context.headers.referer).origin;
+      const url = new URL(context.headers.referer).origin;
       const order = new Order({ products: args.products });
       const line_items = [];
 
@@ -81,8 +81,8 @@ const resolvers = {
         payment_method_types: ["card"],
         line_items,
         mode: "payment",
-        // success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        // cancel_url: `${url}/`,
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
       });
 
       return { session: session.id };

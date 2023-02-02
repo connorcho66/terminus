@@ -61,8 +61,8 @@ const Cart = () => {
         <div className="close" onClick={toggleCart}>
           [close]
         </div>
-        {state.cart.map((item) => (
-          <p key={item._id}>{item.name}</p>
+        {state.cart.map((item, index) => (
+          <p key={index}>{item.name}</p>
         ))}
         Total ${calculateTotal()}
         <button onClick={submitCheckout}>Checkout</button>
