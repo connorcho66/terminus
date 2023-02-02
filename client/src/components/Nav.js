@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as ReactLink } from 'react-router-dom';
 import {
     Box,
     Text,
@@ -6,6 +7,7 @@ import {
     ButtonGroup,
     Container,
     Flex,
+    // Link,
     HStack,
     IconButton,
     useBreakpointValue,
@@ -32,13 +34,17 @@ function Nav() {
               {isDesktop ? (
                 <Flex justify="space-between" flex="1">
                   <ButtonGroup variant="link" spacing="8">
-                    {['Co-Op', 'Profile', 'Store'].map((item) => (
-                      <Button color='greys.200' key={item}>{item}</Button>
-                    ))}
+                    {/* {['Co-Op', 'Profile', 'Store'].map((item) => (
+                      <Button as='a' color='greys.200' key={item}>{item}</Button>
+                    ))} */}
+                    <Button key='Co-Op' as={ReactLink} to='/coop'
+                    color='greys.200'>Co-Op</Button>
+                    <Button key='Shop' as={ReactLink} to='/shop'
+                    color='greys.200'>Shop</Button>
                   </ButtonGroup>
                   <HStack spacing="4">
+                    {/* TODO: create logout route/logic */}
                     <Button color='#171923' variant="ghost">Log out</Button>
-                    {/* <Button variant="primary">Sign up</Button> */}
                   </HStack>
                 </Flex>
               ) : (

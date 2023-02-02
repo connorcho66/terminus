@@ -1,5 +1,6 @@
 import React from 'react';
-// import theme from '../theme/theme';
+import { Link as ReactLink } from 'react-router-dom';
+
 import {
     Stack,
     Flex,
@@ -7,27 +8,9 @@ import {
     Text,
     VStack,
     useBreakpointValue,
+    Box,
   } from '@chakra-ui/react';
-  
-// const theme = extendTheme({
-//     textStyles: {
-//       h1: {
-//         // you can also use responsive styles
-//         fontFamily: 'Lacquer',
-//         fontSize: ['48px', '72px'],
-//         fontWeight: 'bold',
-//         lineHeight: '110%',
-//         letterSpacing: '-2%',
-//         color: 'red',
-//       },
-//       btn: {
-//         fontSize: ['36px', '48px'],
-//         fontWeight: 'semibold',
-//         lineHeight: '110%',
-//         letterSpacing: '-1%',
-//       },
-//     },
-//   });
+
 
   export default function Home() {
     return (
@@ -42,9 +25,10 @@ import {
         <VStack
           w={'full'}
           justify={'center'}
-          px={useBreakpointValue({ base: 4, md: 8 })}
-          bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
-          <Stack maxW={'2xl'} align={'flex-start'} spacing={6}>
+          px={useBreakpointValue({ base: 4, md: 8 })}>
+          {/* bgGradient={'linear(to-r, blackAlpha.600, transparent)'}> */}
+          {/* <Stack maxW={'2xl'} > */}
+            <Box display={'flex'} align={'flex-start'} justify={'center'} direction={'row'}>
             <Text
               color={'greys.200'}
               fontWeight={700}
@@ -56,16 +40,22 @@ import {
               fontFamily='h1'>
               Termin<Text as='span' color={'#171923'}>us</Text>
             </Text>
-            <Stack direction={'row'} mr={'auto'} ml={'auto'}>
+            </Box>
+            {/* </Stack> */}
+            <Stack direction={'row'} justify='center'>
               <Button
+                as={ReactLink}
+                to='/signup'
                 bg={'red.800'}
                 rounded={'full'}
                 color={'white'}
-                _hover={{ bg: 'blue.500' }}
+                _hover={{ bg: 'red.700' }}
                 fontFamily='h2'>
                 Signup
               </Button>
               <Button
+                as={ReactLink}
+                to='/login'
                 bg={'whiteAlpha.300'}
                 rounded={'full'}
                 color={'white'}
@@ -74,7 +64,7 @@ import {
                 Login
               </Button>
             </Stack>
-          </Stack>
+          {/* </Stack> */}
         </VStack>
       </Flex>
     );
