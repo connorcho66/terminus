@@ -1,8 +1,8 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
-// import { useMutation } from '@apollo/client';
-// import Auth from '../utils/auth';
-// import { ADD_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
+import { ADD_USER } from '../utils/mutations';
 import {
     Input,
     FormControl,
@@ -19,22 +19,22 @@ import {
     Link
   } from '@chakra-ui/react';
 
-function Signup(props) {
+const Signup = () => {
     // const [formState, setFormState] = useState({ email: '', passwrod: '' });
-    // const [addUser] = useMutation(ADD_USER);
+    const [addUser] = useMutation(ADD_USER);
 
-    // const handleFormSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const mutationResponse = await addUser({
-    //         variables: {
-    //             username: formState.username,
-    //             email: formState.email,
-    //             password: formState.password
-    //         },
-    //     });
-    //     const token = mutationResponse.data.addUser.token
-    //     Auth.login(token);
-    // };
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const mutationResponse = await addUser({
+            variables: {
+                username: name,
+                email: email,
+                password: password
+            },
+        });
+        const token = mutationResponse.data.addUser.token
+        Auth.login(token);
+    };
 
     // const handleChange = (event) => {
     //     const { name, value } = event.target;
@@ -44,7 +44,9 @@ function Signup(props) {
     //     });
     // };
 
-    
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
     return (
         <Flex
@@ -79,34 +81,60 @@ function Signup(props) {
             </Text>
             <Container borderRadius='md' bg='greys.100' centerContent>
                 <Box py={7}>
-                    <FormControl>
+                    {/* <FormControl>
                         <FormLabel htmlFor='email'>Email address</FormLabel>
                         <Input id='email' type='email' />
                         <FormLabel mt={2} htmlFor='password'>Password</FormLabel>
                         <Input pr='3rem' type={'password'} id='password' />
-                    </FormControl>
-                    <Button
-                        mt={4}
-                        ml={16}
-                        bg={'red.800'}
-                        rounded={'full'}
-                        color={'white'}
-                        _hover={{ bg: 'blue.500' }}
-                        fontFamily='h2'>
-                        Signup
-                    </Button>
-                    <Box pt={3}>
-                        Already have an account?{" "}
-                        <Link color="teal.500" href="/login">
-                        Login
-                        </Link>
-                    </Box>
+                    </FormControl> */}
+                    <form onSubmit={handleFormSubmit}>
+                        <FormControl id='name' isRequired>
+                            <FormLabel>Username</FormLabel>
+                            <Input
+                                placeholder='Enter Your Username'
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </FormControl>
+                        <FormControl id='email' isRequired>
+                            <FormLabel>Email</FormLabel>
+                            <Input
+                                placeholder='Enter Your Email'
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </FormControl>
+                        <FormControl id='password' isRequired>
+                            <FormLabel>Password</FormLabel>
+                            <Input
+                                placeholder='Enter Your Password'
+                                type={'password'}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </FormControl>
+                        <Button
+                            type='submit'
+                            mt={4}
+                            ml={16}
+                            bg={'red.800'}
+                            rounded={'full'}
+                            color={'white'}
+                            _hover={{ bg: 'blue.500' }}
+                            fontFamily='h2'
+                            >
+                            Signup
+                        </Button>
+                        <Box pt={3}>
+                            Already have an account?{" "}
+                            <Link color="teal.500" href="/login">
+                            Login
+                            </Link>
+                        </Box>
+                    </form>
                 </Box>
             </Container>
           </Stack>
         </VStack>
       </Flex>
     );
-}
+};
 
 export default Signup
