@@ -22,7 +22,7 @@ db.once('open', async () => {
             description: 'Foldable shovel with pouch to carry around without hassle.',
             stock: 40,
             price: 18.99,
-            image: 'folding-shovel.jpg',
+            image: './img/folding-shovel.jpg',
             category: categories[0]._id
         },
         {
@@ -30,7 +30,7 @@ db.once('open', async () => {
             description: 'You can water you plants.',
             stock: 30,
             price: 11.99,
-            image: 'watering-can.jpg',
+            image: './img/watering-can.jpg',
             category: categories[0]._id
         },
         {
@@ -38,7 +38,7 @@ db.once('open', async () => {
             description: 'Durable axe that you can cut trees or maybe some zombies?',
             stock: 35,
             price: 29.99,
-            image: 'axe.jpg',
+            image: './img/axe.jpg',
             category: categories[0]._id
         },
         {
@@ -46,7 +46,7 @@ db.once('open', async () => {
             description: 'Did you get hurt or maybe bitten by zombies? Get this!',
             stock: 60,
             price: 9.99,
-            image: 'bandage.jpg',
+            image: './img/bandage.jpg',
             category: categories[1]._id
         },
         {
@@ -54,7 +54,7 @@ db.once('open', async () => {
             description: 'Essential first aid supplies for common cuts, aches, and pain. Also, it\' lightweight and easy to carry',
             stock: 50,
             price: 20.99,
-            image: 'small-first-aid.jpg',
+            image: './img/small-first-aid.jpg',
             category: categories[1]._id
         },
         {
@@ -62,7 +62,7 @@ db.once('open', async () => {
             description: 'First Aid kit that can be stored at home with essential first aid supplies.',
             stock: 30,
             price: 38.99,
-            image: 'big-first-aid.jpg',
+            image: './img/big-first-aid.jpg',
             category: categories[1]._id
         },
         {
@@ -70,7 +70,7 @@ db.once('open', async () => {
             description: 'Defend yourself against zombie without loud noise like guns.',
             stock: 25,
             price: 299.99,
-            image: 'crossbow.jpg',
+            image: './img/crossbow.jpg',
             category: categories[2]._id
         },
         {
@@ -78,7 +78,7 @@ db.once('open', async () => {
             description: 'Need a durable and sharp knife against zombies? This machete is for you!',
             stock: 20,
             price: 29.99,
-            image: 'machete.jpg',
+            image: './img/machete.jpg',
             category: categories[2]._id
         },
         {
@@ -86,7 +86,7 @@ db.once('open', async () => {
             description: 'Small portable pocket knife that you can carry anywhere.',
             stock: 45,
             price: 13.99,
-            image: 'pocket-knife.jpg',
+            image: './img/pocket-knife.jpg',
             category: categories[2]._id
         },
         {
@@ -94,7 +94,7 @@ db.once('open', async () => {
             description: 'Everything you might need to go against zombies!',
             stock: 35,
             price: 99.99,
-            image: 'survival-set.jpg',
+            image: './img/survival-set.jpg',
             category: categories[2]._id
         },
         {
@@ -102,7 +102,7 @@ db.once('open', async () => {
             description: 'Going outdoor? Grab this tent and you can stay cozy.',
             stock: 25,
             price: 159.99,
-            image: 'tent.jpg',
+            image: './img/tent.jpg',
             category: categories[3]._id
         },
         {
@@ -110,7 +110,7 @@ db.once('open', async () => {
             description: 'Stay clean with this toilet paper.',
             stock: 50,
             price: 1.99,
-            image: 'toilet-paper.jpg',
+            image: './img/toilet-paper.jpg',
             category: categories[3]._id
         },
         {
@@ -118,7 +118,7 @@ db.once('open', async () => {
             description: 'Too many zombies around you? This might help.',
             stock: 20,
             price: 39.99,
-            image: 'grenade.jpg',
+            image: './img/grenade.jpg',
             category: categories[4]._id
         },
         {
@@ -126,8 +126,8 @@ db.once('open', async () => {
             description: 'Protect your home with land mine.',
             stock: 15,
             price: 79.99,
-            image: 'land-mine.jpg',
-            category: categories[5]._id
+            image: './img/land-mine.jpg',
+            category: categories[4]._id
         },
     ]);
 
@@ -139,42 +139,42 @@ db.once('open', async () => {
         {
             name: 'Stay cozy',
             description: 'You have purchased the tent!',
-            image: 'camp.png'
+            image: './img/camp.png'
         },
         {
             name: 'Timber!!',
             description: 'You are ready to cut down trees! Or zombies...',
-            image: 'axe.png'
+            image: './img/axe.png'
         },
         {
             name: 'Extrovert',
             description: 'You have joined the Co-op',
-            image: 'chat.png'
+            image: './img/chat.png'
         },
         {
             name: 'FIRE!!!',
             description: 'Purchased fire starter',
-            image: 'fire.png'
+            image: './img/fire.png'
         },
         {
             name: 'Like a rock',
             description: 'You can now protect yourself',
-            image: 'shield.png'
+            image: './img/shield.png'
         },
         {
             name: 'There might be hope...?',
             description: 'Purchased seeds',
-            image: 'sprout.png'
+            image: './img/sprout.png'
         },
         {
             name: 'Bomber!!!',
             description: 'You purchased explosive, go blow stuff!',
-            image: 'bomb.png'
+            image: './img/bomb.png'
         },
         {
             name: 'Medic!',
             description: 'You purchased medicines.',
-            image: 'redcross.png'
+            image: './img/redcross.png'
         },
     ]);
 
