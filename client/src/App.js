@@ -1,4 +1,5 @@
 import React from "react";
+import { SlBasket } from 'react-icons/sl';
 // import custom fonts
 import "@fontsource/nosifer";
 import "@fontsource/butcherman";
@@ -60,14 +61,8 @@ function App() {
             path="/Profile/:id" 
             element={<Profile />}
             /> */}
-          <Route
-            path="/signup"
-            element={<Signup />}
-          />
-          <Route
-            path="/login"
-            element={<Login />}
-          />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
       </ShopProvider>
