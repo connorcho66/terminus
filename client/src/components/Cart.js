@@ -3,9 +3,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CHECKOUT } from "../utils/queries";
 // import CartItem from "../CartItem";
-import Auth from "../utils/Auth";
-import { useStoreContext } from "../utils/ShopContext";
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../utils/actions";
+import Auth from "../utils/auth.js";
+import { TOGGLE_CART} from "../utils/actions";
 import { useShopContext } from "../utils/ShopContext";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -40,6 +39,7 @@ const Cart = () => {
 
     state.cart.forEach((item) => {
       productIds.push(item._id);
+      console.log(productIds);
     });
 
     getCheckout({
@@ -65,8 +65,8 @@ const Cart = () => {
           <p key={index}>{item.name}</p>
         ))}
         Total ${calculateTotal()}
-        <button onClick={submitCheckout}>Checkout</button>
-      </span>
+        {Auth.loggedIn() ? (<button onClick={submitCheckout}>Checkout</button>) : (<h1>Please login</h1>)}
+      </span> 
     );
   }
 };
