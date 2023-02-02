@@ -1,8 +1,8 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
-// import { useMutation } from '@apollo/client';
-// import Auth from '../utils/auth';
-// import { ADD_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
+import { LOGIN } from '../utils/mutations';
 import {
     Input,
     FormControl,
@@ -19,22 +19,24 @@ import {
     Link
   } from '@chakra-ui/react';
 
-function Login(props) {
-    // const [formState, setFormState] = useState({ email: '', passwrod: '' });
-    // const [addUser] = useMutation(ADD_USER);
+const Login = () => {
+    const [login] = useMutation(LOGIN);
 
-    // const handleFormSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const mutationResponse = await addUser({
-    //         variables: {
-    //             username: formState.username,
-    //             email: formState.email,
-    //             password: formState.password
-    //         },
-    //     });
-    //     const token = mutationResponse.data.addUser.token
-    //     Auth.login(token);
-    // };
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(name + ", " + password);
+        const mutationResponse = await login ({
+            variables: {
+                username: name,
+                password: password
+            },
+        });
+        const token = mutationResponse.data.login.token;
+        Auth.login(token);
+    };
 
     // const handleChange = (event) => {
     //     const { name, value } = event.target;
@@ -43,8 +45,6 @@ function Login(props) {
     //         [name]: value,
     //     });
     // };
-
-    
 
     return (
         <Flex
@@ -79,28 +79,41 @@ function Login(props) {
             </Text>
             <Container borderRadius='md' bg='greys.100' centerContent>
                 <Box py={7}>
-                    <FormControl>
-                        <FormLabel htmlFor='email'>Email address</FormLabel>
-                        <Input id='email' type='email' />
-                        <FormLabel mt={2} htmlFor='password'>Password</FormLabel>
-                        <Input pr='3rem' type={'password'} id='password' />
-                    </FormControl>
-                    <Button
-                        mt={4}
-                        ml={16}
-                        bg={'red.800'}
-                        rounded={'full'}
-                        color={'white'}
-                        _hover={{ bg: 'blue.500' }}
-                        fontFamily='h2'>
-                        login
-                    </Button>
-                    <Box pt={3}>
-                        New to our store?{" "}
-                        <Link color="teal.500" href="/signup">
-                        Signup
-                        </Link>
-                    </Box>
+                    <form onSubmit={handleFormSubmit}>
+                        <FormControl id='name' isRequired>
+                            <FormLabel>Username</FormLabel>
+                            <Input
+                                placeholder='Enter Your Username'
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </FormControl>
+                        <FormControl id='password' isRequired>
+                            <FormLabel>Password</FormLabel>
+                            <Input
+                                placeholder='Enter Your Password'
+                                type={'password'}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </FormControl>
+                        <Button
+                            type='submit'
+                            mt={4}
+                            ml={16}
+                            bg={'red.800'}
+                            rounded={'full'}
+                            color={'white'}
+                            _hover={{ bg: 'blue.500' }}
+                            fontFamily='h2'
+                            >
+                            Login
+                        </Button>
+                        <Box pt={3}>
+                            New to our store?{" "}
+                            <Link color="teal.500" href="/signup">
+                            Signup
+                            </Link>
+                        </Box>
+                    </form>
                 </Box>
             </Container>
           </Stack>

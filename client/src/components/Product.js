@@ -4,7 +4,15 @@ import { useShopContext } from "../utils/ShopContext";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 
 export default function Product({ product }) {
-  // const [state, dispatch] = useShopContext()
+  const [state, dispatch] = useShopContext()
+
+
+  const addItemToCart = () => {
+    dispatch({
+        type: ADD_TO_CART,
+        product: {...product}
+    }) 
+  }
 
   return (
     <Box color={"white"} borderWidth="3px" bg={'browns.400'} borderColor={'browns.300'} borderRadius='7px'>
@@ -53,6 +61,7 @@ export default function Product({ product }) {
               ${product.price}</Text>
           </Box>
           <Button 
+            onClick={addItemToCart}
             bg={"red.800"} 
             rounded={"full"} 
             color={"white"} 
