@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^5.3.0",
+    "react-error-overlay": "^6.0.9"
   }
 }

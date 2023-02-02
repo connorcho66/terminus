@@ -13,6 +13,7 @@
     "@fontsource/major-mono-display": "^4.5.11",
     "@fontsource/nosifer": "^4.5.7",
     "@fontsource/noto-serif-ahom": "^4.5.11",
+    "@stripe/stripe-js": "^1.46.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
@@ -40,7 +41,8 @@
     "workbox-streams": "^6.5.4"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "react-error-overlay": "^6.0.9"
   },
   "scripts": {
     "start": "react-scripts start",
