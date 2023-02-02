@@ -6,6 +6,7 @@ const theme = extendTheme({
     h1:  `'Nosifer', sans-serif`,
       // fontSize: ['48px', '72px']
     h2: `'Major mono display', sans-serif`,
+    h3: `'Noto serif ahom', 'serif'`
   },
   fontSizes: {
     h1: '120px',

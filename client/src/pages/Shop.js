@@ -2,7 +2,10 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { QUERY_ALL_PRODUCTS } from "../utils/queries";
 import ProductList from "../components/ProductList";
-import { Box } from "@chakra-ui/react";
+import { 
+  Box,
+  Text,
+  HStack  } from "@chakra-ui/react";
 import Nav from "../components/Nav";
 import Cart from '../components/Cart'
 
@@ -19,7 +22,16 @@ const Shop = () => {
       <Nav />
       <Cart />
       <Box as="main" padding="1rem" backgroundColor="RGBA(0, 0, 0, 0.80)">
-        <h1>Shop:</h1>
+        <HStack>
+          <Text
+            fontFamily='h2'
+            fontSize={{ base: '20px', sm: '30px', md: '55px', lg: '60px' }}
+            color={'greys.200'}>Shop:</Text>
+          <Text
+            fontFamily='h2'
+            fontSize={{ base: '13px', sm: '20px', md: '30px', lg: '45px' }}
+            color={'greys.200'}>Add to your Co-Op's Arsenal</Text>
+        </HStack>
         {loading ? <div>Loading...</div> : <ProductList products={products} />}
       </Box>
     </>
