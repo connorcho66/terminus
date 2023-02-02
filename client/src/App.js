@@ -16,12 +16,14 @@ import {
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { ShopProvider } from "./utils/ShopContext";
-import Home from "./pages/Home";
-import Shop from "./pages/Shop";
-import CoOp from "./pages/CoOp";
+import Home from './pages/Home';
+import Shop from './pages/Shop'
+import CoOp from './pages/CoOp';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -58,12 +60,20 @@ function App() {
             path="/Profile/:id" 
             element={<Profile />}
             /> */}
-              </Routes>
-            </div>
-          </ShopProvider>
-        </Router>
-      </ApolloProvider>
-    </ChakraProvider>
+          <Route
+            path="/signup"
+            element={<Signup />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+        </Routes>
+      </div>
+      </ShopProvider>
+    </Router> 
+  </ApolloProvider>
+</ChakraProvider>
   );
 }
 
