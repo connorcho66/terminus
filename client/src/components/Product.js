@@ -4,7 +4,7 @@ import { useShopContext } from "../utils/ShopContext";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 
 export default function Product({ product }) {
-  // const [state, dispatch] = useShopContext()
+//   const [state, dispatch] = useShopContext()
 
   return (
     <Box color={"white"} borderWidth="1px">

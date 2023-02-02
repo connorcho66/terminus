@@ -39,7 +39,8 @@
     "workbox-streams": "^6.5.4"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "react-error-overlay": "^6.0.9"
   },
   "scripts": {
     "start": "react-scripts start",
