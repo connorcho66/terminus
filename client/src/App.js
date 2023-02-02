@@ -20,6 +20,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
+import Shop from './pages/Shop'
 import CoOp from './pages/CoOp';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -59,6 +60,10 @@ function App() {
          <Route 
             path="/coop" 
             element={<CoOp />}
+          />
+          <Route 
+            path="/shop"
+            element={<Shop />}
           />
           {/* <Route 
             path="/Profile/:id" 

@@ -65,6 +65,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
+        addCoOpToUser(coOpId: ID!, userId: ID!): User
         addBadge(name: String): Badge
         addBadgeToUser(badgeId: ID!, userId: ID!): User
         addCategory(name: String): Category

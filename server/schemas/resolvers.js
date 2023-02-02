@@ -1,6 +1,6 @@
 // import models here
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Product, Category, Order, Badge } = require("../models");
+const { User, Product, Category, Order, Badge, CoOp } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -43,13 +43,13 @@ const resolvers = {
 
     //returns profile of signed in user
     me: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findOne({ _id: context.user._id }).populate('coOp');
+      // if (context.user) {
+        const user = await User.findOne({ _id: args.userId }).populate('coOp');
 
         return user;
-      }
+      // }
 
-      throw new AuthenticationError("Not logged in");
+      // throw new AuthenticationError("Not logged in");
     },
   },
 
@@ -89,6 +89,18 @@ const resolvers = {
       console.log(user);
       return user;
     },
+
+    addCoOpToUser: async (parent, args) => {
+      console.log(args);
+    const user = await User.findOneAndUpdate(
+      { _id: args.userId },
+      { $set: {coOp: args.coOpId}  },
+      { new: true }
+    ).populate('badges');
+
+    console.log(user);
+    return user;
+  },
 
     addOrder: async (parent, args, context) => {
       if (context.user) {
