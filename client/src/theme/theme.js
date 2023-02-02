@@ -8,7 +8,7 @@ const theme = extendTheme({
     h2: `'Major mono display', sans-serif`,
   },
   fontSizes: {
-    h1: '90px'
+    h1: '120px',
   },
   shadows: {
     h1: '1px'
