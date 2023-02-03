@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link as ReactLink } from 'react-router-dom';
 import { SlBasket } from "react-icons/sl";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/client";
@@ -22,6 +23,7 @@ import {
   Spacer,
   Divider,
   HStack,
+  Link
 } from "@chakra-ui/react";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -143,33 +145,39 @@ const Cart = () => {
 
           <DrawerBody bg={"greys.200"} borderRadius="15px" mr="5px" ml="5px">
             {state.cart.map((item, index) => (
-              // <HStack spacing={'30'}>
-              <Text
-                key={index}
-                fontFamily="h3"
-                mt="6"
-                fontSize={{ base: "18px", sm: "18px", md: "20px", lg: "20px" }}
-              >
-                {item.name}
-                <Text key={item} fontFamily="h2" textAlign={"right"} mt="-1">
-                  ${item.price}
-                </Text>
+              <><HStack spacing={'30'}>
                 <Button
                   onClick={() => removeFromCart(item._id)}
                   fontFamily="h2"
+                  mr='-5'
+                  fontSize={{ base: '10', sm: '10', md: '13' }}
                   color={"greys.100"}
                   bg={"red.800"}
-                  _hover={{ bg: "red.700" }}
-                >
-                  Remove
-                </Button>
-                <Divider orientation="horizontal" />
-              </Text>
-              //  {/* <Spacer h='5'/> */}
-              // </HStack>
+                  size='xs'
+                  _hover={{ bg: "red.700" }}>
+                  X</Button>
+                <Text
+                  key={index}
+                  fontFamily='mono'
+                  // mt="6"
+                  ml='1'
+                  fontSize={{ base: "18px", sm: "18px", md: "20px", lg: "20px" }}>
+                  {item.name}</Text>
+                
+              </HStack>
+              <Text 
+                key={item} 
+                fontFamily="h2" 
+                textAlign={"right"} mt="-1">
+                  ${item.price}
+                  <Divider orientation="horizontal" />
+                </Text>
+                <Box h={{base:'3', sm:'10'}} /></>
             ))}
             <Spacer h="20" />
-            <Text fontFamily="h2">Total ${calculateTotal()}</Text>
+            <Text 
+              fontFamily="h2"
+              textAlign='right'>Total ${calculateTotal()}</Text>
           </DrawerBody>
 
           <DrawerFooter>
@@ -185,7 +193,12 @@ const Cart = () => {
               </Button>
             ) : (
               // make Text el
-              <Text>Please login</Text>
+              <Link 
+                color="red.800" 
+                as={ReactLink}
+                to='/profile'
+                fontFamily='mono'>
+                  Please login</Link>
             )}
           </DrawerFooter>
         </DrawerContent>

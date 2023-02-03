@@ -26,27 +26,21 @@ import {
           w={'full'}
           justify={'center'}
           px={useBreakpointValue({ base: 4, md: 8 })}>
-          {/* bgGradient={'linear(to-r, blackAlpha.600, transparent)'}> */}
-          {/* <Stack maxW={'2xl'} > */}
             <Box display={'flex'} align={'flex-start'} justify={'center'} direction={'row'}>
             <Text
               color={'greys.200'}
               fontWeight={700}
               lineHeight={1.2}
-            //   fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}
               textShadow='5px .5px #822727'
-            //   fontSize='h1'
               fontSize={{ base: '50px', sm: '60px', md: '85px', lg: '120px' }}
               fontFamily='h1'>
               Termin<Text as='span' color={'#171923'}>us</Text>
             </Text>
             </Box>
-            {/* </Stack> */}
             <Stack direction={'row'} justify='center'>
               <Button
                 as={ReactLink}
                 to='/signup'
-                // layerStyle='btnRed'>
                 bg={'red.800'}
                 rounded={'full'}
                 color={'white'}
@@ -67,7 +61,6 @@ import {
                 Login
               </Button>
             </Stack>
-          {/* </Stack> */}
         </VStack>
       </Flex>
     );
