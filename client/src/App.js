@@ -26,6 +26,7 @@ import CoOp from './pages/CoOp';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Profile from "./pages/Profile";
+import Success from './pages/Success'
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -73,6 +74,10 @@ function App() {
           <Route
             path="/profile"
             element={<Profile />}
+          />
+          <Route
+            path="/success"
+            element={<Success />}
           />
         </Routes>
       </div>
