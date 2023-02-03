@@ -51,41 +51,63 @@ const resolvers = {
 
       // throw new AuthenticationError("Not logged in");
     },
-    checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer);
-      const order = new Order({ products: args.products });
-      const line_items = [];
-
-      const { products } = await order.populate("products");
-
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`],
+    order: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'orders.products',
+          populate: 'category'
         });
 
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
-          currency: "usd",
-        });
-
-        line_items.push({
-          price: price.id,
-          quantity: 1,
-        });
+        return user.orders.id(_id);
       }
 
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items,
-        mode: "payment",
-        success_url: `${url}?success=true`,
-        cancel_url: `${url}?success=false`,
-      });
+      throw new AuthenticationError('Not logged in');
+    },
+    checkout: async (parent, args, context) => {
+      try {
+        console.log(args);
+        const url = new URL(context.headers.referer).origin;
+        const order = await Order.create({ products: args.products });
+        console.log(order);
+        const line_items = [];
+        const newOrder = await Order.findById(order._id).populate('products')
+        // console.log('New order: ' + newOrder);
+        const { products } = newOrder
+        console.log(products);
+        for (let i = 0; i < products.length; i++) {
+          const product = await stripe.products.create({
+            name: products[i].name,
+            description: products[i].description,
+            images: [`${url}/images/${products[i].image}`],
+          });
+  
+          console.log(products);
+          console.log(products[i].price);
+          const unitPrice = await Math.floor(products[i].price * 100)
+          const price = await stripe.prices.create({
+            product: product.id,
+            unit_amount: unitPrice,
+            currency: "usd",
+          });
+  
+          line_items.push({
+            price: price.id,
+            quantity: 1,
+          });
+        }
 
-      return { session: session.id };
+        const session = await stripe.checkout.sessions.create({
+          payment_method_types: ["card"],
+          line_items,
+          mode: "payment",
+          success_url: `${url}?success=true`,
+          cancel_url: `${url}?success=false`,
+        });
+
+        return { session: session.id };
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 
