@@ -25,7 +25,10 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "CoOp",
   },
-  orders: [Order.schema],
+  orders: [{
+    type: Schema.Types.ObjectId,
+    ref: "Order"
+  }],
   badges: [
     {
       type: Schema.Types.ObjectId,

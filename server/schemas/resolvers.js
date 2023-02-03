@@ -33,13 +33,8 @@ const resolvers = {
     },
 
     //find user based on username
-    user: async (parent, args, context) => {
-      console.log(context.user);
-      if (args) {
-        return User.findOne({ username: args.username }).populate("coOp");
-      } else if (context.user) {
-        return User.findOne({ username: context.username})
-      }
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('orders');
     },
 
     //returns all users
@@ -80,9 +75,11 @@ const resolvers = {
         const newOrder = await Order.findById(order._id).populate("products");
         // console.log('New order: ' + newOrder);
         const userOrder = await User.findOneAndUpdate(
-          { id: context.user._id },
-          { $push: { orders: newOrder } }
+          { _id: context.user._id },
+          { $addToSet: { orders: newOrder._id } }
         );
+        console.log(newOrder._id);
+        console.log(userOrder);
         const { products } = newOrder;
         console.log(products);
         for (let i = 0; i < products.length; i++) {

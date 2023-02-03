@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME} from '../utils/queries';
+import { QUERY_ME, QUERY_SINGLE_USER} from '../utils/queries';
+import Auth from '../utils/Auth';
 
 export default function Success() {
-    
-    const {loading, data} = useQuery(QUERY_ME)
+  
+  const currentUN = Auth.getProfile().data.username
 
-    const user = data?.me || 'No user'
+  const {loading, data} = useQuery(QUERY_SINGLE_USER, {
+    variables: {username: currentUN}
+  })
 
-    console.log(user)
+
+  loading ? console.log('loading') : console.log(data);
+
+
 
     return (
       <div>
