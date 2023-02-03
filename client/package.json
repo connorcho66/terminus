@@ -1,12 +1,13 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "engines": {
-    "node": "16.17.1",
-    "npm": "8.11.0"
-  },
+
   "private": true,
   "proxy": "http://localhost:3001",
+  "engines": {
+    "node": "16.17.1",
+    "npm": "8.15.0"
+  },
   "dependencies": {
     "@apollo/client": "^3.5.8",
     "@chakra-ui/react": "^1.8.9",
