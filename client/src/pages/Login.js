@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link as ReactLink } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/Auth.js';
 import { LOGIN } from '../utils/mutations';
@@ -16,7 +16,8 @@ import {
     Container,
     Box,
     Button,
-    Link
+    Link,
+    Spacer
   } from '@chakra-ui/react';
 
 const Login = () => {
@@ -81,14 +82,15 @@ const Login = () => {
                 <Box py={7}>
                     <form onSubmit={handleFormSubmit}>
                         <FormControl id='name' isRequired>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel fontFamily='mono'>Username</FormLabel>
                             <Input
                                 placeholder='Enter Your Username'
                                 onChange={(e) => setName(e.target.value)}
                             />
+                            <Spacer h='5' />
                         </FormControl>
                         <FormControl id='password' isRequired>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel fontFamily='mono'>Password</FormLabel>
                             <Input
                                 placeholder='Enter Your Password'
                                 type={'password'}
@@ -97,20 +99,26 @@ const Login = () => {
                         </FormControl>
                         <Button
                             type='submit'
+                            as={ReactLink}
+                            to='/profile'
                             mt={4}
                             ml={16}
                             bg={'red.800'}
                             rounded={'full'}
                             color={'white'}
-                            _hover={{ bg: 'blue.500' }}
+                            _hover={{ bg: 'red.700' }}
+                            _focus={{ boxShadow: 'none', bg: 'red.600'}}
                             fontFamily='h2'
                             >
                             Login
                         </Button>
-                        <Box pt={3}>
-                            New to our store?{" "}
-                            <Link color="teal.500" href="/signup">
-                            Signup
+                        <Box pt={3} fontFamily='mono'>
+                            New Survivor?{" "}
+                            <Link 
+                              color="red.800" 
+                              as={ReactLink}
+                              to='/signup'>
+                              Signup
                             </Link>
                         </Box>
                     </form>

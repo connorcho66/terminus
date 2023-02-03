@@ -46,10 +46,12 @@ import {
               <Button
                 as={ReactLink}
                 to='/signup'
+                // layerStyle='btnRed'>
                 bg={'red.800'}
                 rounded={'full'}
                 color={'white'}
                 _hover={{ bg: 'red.700' }}
+                _focus={{ boxShadow: 'none', bg: 'red.600'}}
                 fontFamily='h2'>
                 Signup
               </Button>
@@ -60,6 +62,7 @@ import {
                 rounded={'full'}
                 color={'white'}
                 _hover={{ bg: 'whiteAlpha.500' }}
+                _focus={{ boxShadow: 'none'}}
                 fontFamily='h2'>
                 Login
               </Button>

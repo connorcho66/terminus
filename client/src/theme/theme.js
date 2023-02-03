@@ -27,6 +27,16 @@ const theme = extendTheme({
       300: '#8B8381',
       400: '#4B4746'
     }
+  },
+  layerStyles: {
+    btnRed: {
+      bgColor: 'red.800',
+      rounded: 'full',
+      color: 'white',
+      fontFamily: 'h2',
+      _hover:{ bgColor: 'red.700'},
+      _focus: { boxShadow: 'none', bgColor: 'red.600'}
+    }
   }
 })
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link as ReactLink } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/Auth.js';
 import { ADD_USER } from '../utils/mutations';
@@ -16,7 +16,8 @@ import {
     Container,
     Box,
     Button,
-    Link
+    Link,
+    Spacer
   } from '@chakra-ui/react';
 
 const Signup = () => {
@@ -80,7 +81,7 @@ const Signup = () => {
               signup
             </Text>
             <Container borderRadius='md' bg='greys.100' centerContent>
-                <Box py={7}>
+                <Box py={10}>
                     {/* <FormControl>
                         <FormLabel htmlFor='email'>Email address</FormLabel>
                         <Input id='email' type='email' />
@@ -89,21 +90,23 @@ const Signup = () => {
                     </FormControl> */}
                     <form onSubmit={handleFormSubmit}>
                         <FormControl id='name' isRequired>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel fontFamily='mono'>Username</FormLabel>
                             <Input
                                 placeholder='Enter Your Username'
                                 onChange={(e) => setName(e.target.value)}
                             />
+                            <Spacer h='5' />
                         </FormControl>
                         <FormControl id='email' isRequired>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel fontFamily='mono'>Email</FormLabel>
                             <Input
                                 placeholder='Enter Your Email'
                                 onChange={(e) => setEmail(e.target.value)}
                             />
+                            <Spacer h='5' />
                         </FormControl>
                         <FormControl id='password' isRequired>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel fontFamily='mono'>Password</FormLabel>
                             <Input
                                 placeholder='Enter Your Password'
                                 type={'password'}
@@ -112,20 +115,26 @@ const Signup = () => {
                         </FormControl>
                         <Button
                             type='submit'
+                            as={ReactLink}
+                            to='/profile'
                             mt={4}
                             ml={16}
                             bg={'red.800'}
                             rounded={'full'}
                             color={'white'}
-                            _hover={{ bg: 'blue.500' }}
+                            _hover={{ bg: 'red.700' }}
+                            _focus={{ boxShadow: 'none', bg: 'red.600'}}
                             fontFamily='h2'
                             >
                             Signup
                         </Button>
-                        <Box pt={3}>
-                            Already have an account?{" "}
-                            <Link color="teal.500" href="/login">
-                            Login
+                        <Box pt={3} fontFamily='mono'>
+                            Already a Survivor?{" "}
+                            <Link 
+                              color="red.800" 
+                              as={ReactLink}
+                              to='/profile'>
+                              Login
                             </Link>
                         </Box>
                     </form>

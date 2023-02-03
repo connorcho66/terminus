@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { SlBasket } from 'react-icons/sl';
+import { SlBasket } from "react-icons/sl";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from "@apollo/client";
 import { QUERY_CHECKOUT } from "../utils/queries";
 // import CartItem from "../CartItem";
 import Auth from "../utils/Auth.js";
-import { TOGGLE_CART} from "../utils/actions";
+import { REMOVE_FROM_CART, TOGGLE_CART } from "../utils/actions";
 import { useShopContext } from "../utils/ShopContext";
-import { 
+import {
   Box,
   Text,
   Drawer,
@@ -18,16 +18,24 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  useDisclosure, 
+  useDisclosure,
   Spacer,
-  Divider,  
-  HStack} from "@chakra-ui/react";
+  Divider,
+  HStack,
+} from "@chakra-ui/react";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Cart = () => {
   const [state, dispatch] = useShopContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
+  const removeFromCart = (id) => {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      _id: id,
+    });
+  };
 
   useEffect(() => {
     if (data) {
@@ -54,7 +62,7 @@ const Cart = () => {
     const productIds = [];
 
     state.cart.forEach((item) => {
-        // console.log(item);
+      // console.log(item);
       productIds.push(item._id);
     });
 
@@ -69,7 +77,7 @@ const Cart = () => {
   //       <SlBasket />
   //     </Box>
   //   );
-  // } 
+  // }
   // else {
   //   return (
   //     // Box el
@@ -91,89 +99,99 @@ const Cart = () => {
   //       ) : (
   //         // make Text el
   //       <h1>Please login</h1>)}
-  //     </span> 
+  //     </span>
   //   );
   // }
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
 
   return (
     <>
-      <Box 
-        ref={btnRef} 
+      <Box
+        ref={btnRef}
         onClick={onOpen}
-        color={'red.800'} 
-        fontSize='40px'
-        _hover={{ color: 'red.700' }} 
-        textAlign={'right'}>
+        color={"red.800"}
+        fontSize="40px"
+        _hover={{ color: "red.700" }}
+        textAlign={"right"}
+      >
         <SlBasket />
       </Box>
       <Drawer
         isOpen={isOpen}
-        placement='right'
+        placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent bg={'greys.100'}>
+        <DrawerContent bg={"greys.100"}>
           <DrawerCloseButton />
           <DrawerHeader>
-            <Spacer h='20px'/>
+            <Spacer h="20px" />
             <Text
-              fontFamily='h2'
-              bg={'red.800'}
-              borderRadius='15px'
-              textAlign={'center'}
-              color={'white'}
-              fontSize='30px'>Your Items</Text>
+              fontFamily="h2"
+              bg={"red.800"}
+              borderRadius="15px"
+              textAlign={"center"}
+              color={"white"}
+              fontSize="30px"
+            >
+              Your Items
+            </Text>
           </DrawerHeader>
 
-          <DrawerBody 
-            bg={'greys.200'}
-            borderRadius='15px'
-            mr='5px'
-            ml='5px'>
+          <DrawerBody bg={"greys.200"} borderRadius="15px" mr="5px" ml="5px">
             {state.cart.map((item, index) => (
               // <HStack spacing={'30'}>
-                <Text 
+              <Text
                 key={index}
-                fontFamily='h3'
-                mt='6'
-                fontSize={{ base: '18px', sm: '18px', md: '20px', lg: '20px' }}
-                >{item.name}
-                <Text
-                  key={item}
-                  fontFamily='h2'
-                  textAlign={'right'}
-                  mt='-1'
-                  >${item.price}</Text>
-                  <Divider orientation='horizontal' /></Text>
+                fontFamily="h3"
+                mt="6"
+                fontSize={{ base: "18px", sm: "18px", md: "20px", lg: "20px" }}
+              >
+                {item.name}
+                <Text key={item} fontFamily="h2" textAlign={"right"} mt="-1">
+                  ${item.price}
+                </Text>
+                <Button
+                  onClick={() => removeFromCart(item._id)}
+                  fontFamily="h2"
+                  color={"greys.100"}
+                  bg={"red.800"}
+                  _hover={{ bg: "red.700" }}
+                >
+                  Remove
+                </Button>
+                <Divider orientation="horizontal" />
+              </Text>
               //  {/* <Spacer h='5'/> */}
               // </HStack>
             ))}
-            <Spacer h='20' />
-            <Text
-              fontFamily='h2'> 
-              Total ${calculateTotal()}</Text>
+            <Spacer h="20" />
+            <Text fontFamily="h2">Total ${calculateTotal()}</Text>
           </DrawerBody>
 
           <DrawerFooter>
             {Auth.loggedIn() ? (
-            <Button 
-              onClick={submitCheckout}
-              fontFamily='h2'
-              color={'greys.100'}
-              bg={'red.800'}
-              _hover={{ bg: 'red.700' }}>Checkout</Button>
+              <Button
+                onClick={submitCheckout}
+                fontFamily="h2"
+                color={"greys.100"}
+                bg={"red.800"}
+                _hover={{ bg: "red.700" }}
+              >
+                Checkout
+              </Button>
             ) : (
               // make Text el
-            <Text>Please login</Text>)}
+              <Text>Please login</Text>
+            )}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
-  )
+  );
 };
 
 export default Cart;
