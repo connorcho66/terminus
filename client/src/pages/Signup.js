@@ -74,9 +74,8 @@ const Signup = () => {
               color={'greys.200'}
               fontWeight={700}
               lineHeight={1.2}
-            //   fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}
+              fontSize={{ base: '50px', sm: '60px', md: '85px', lg: '120px' }}
               textShadow='5px .5px #822727'
-              fontSize='h1'
               fontFamily='h1'>
               signup
             </Text>
@@ -133,7 +132,8 @@ const Signup = () => {
                             <Link 
                               color="red.800" 
                               as={ReactLink}
-                              to='/profile'>
+                              to='/profile'
+                              fontFamily='mono'>
                               Login
                             </Link>
                         </Box>
