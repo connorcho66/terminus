@@ -64,7 +64,9 @@ export default function Product({ product }) {
             onClick={addItemToCart}
             bg={"red.800"} 
             rounded={"full"} 
-            color={"white"} 
+            color={"white"}
+            _hover={{ bg: 'red.700' }}
+            _focus={{ boxShadow: 'BlackAlpha.600'}} 
             fontFamily="h2"
             mb='2'>
             Add To Cart
