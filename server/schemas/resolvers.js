@@ -79,7 +79,7 @@ const resolvers = {
           { $addToSet: { orders: newOrder._id } }
         );
         console.log(newOrder._id);
-        console.log(userOrder);
+        console.log('User order:' + (userOrder).populate("products"));
         const { products } = newOrder;
         console.log(products);
         for (let i = 0; i < products.length; i++) {

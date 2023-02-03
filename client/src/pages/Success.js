@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME, QUERY_SINGLE_USER} from '../utils/queries';
+import {QUERY_SINGLE_USER} from '../utils/queries';
 import Auth from '../utils/Auth';
 
 export default function Success() {
