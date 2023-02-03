@@ -7,10 +7,17 @@ import {
     ButtonGroup,
     Container,
     Flex,
-    // Link,
     HStack,
     IconButton,
     useBreakpointValue,
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    MenuItemOption,
+    MenuGroup,
+    MenuOptionGroup,
+    MenuDivider,
   } from '@chakra-ui/react'
   import { FiMenu } from 'react-icons/fi'
 
@@ -18,7 +25,15 @@ function Nav() {
     const isDesktop = useBreakpointValue({ base: false, sm: false, md: true, lg: true })
     return (
     //   <Box as="section" pb={{ base: '12', md: '24' }}>
-        <Box as="nav" bg="browns.400" boxShadow="sm">
+        <Box as="nav" 
+          bgGradient='linear(to-b, red.800, browns.400)'
+          w={'100%'}
+          h={{base:'15vh', sm:'25vh'}}
+          backgroundImage={
+            'url(https://images.unsplash.com/photo-1553453005-34d0cb607b23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)'
+          }
+          backgroundSize={'cover'}
+          backgroundPosition={'center 40%'}>
           <Container py={{ base: '4', lg: '5' }}>
             <HStack>
               <Text
@@ -39,20 +54,43 @@ function Nav() {
                     ))} */}
                     <Button key='Co-Op' as={ReactLink} to='/coop'
                     color='greys.200'>Co-Op</Button>
+                    <Button key='Profile' as={ReactLink} to='/profile'
+                    color='greys.200'>Profile</Button>
                     <Button key='Shop' as={ReactLink} to='/shop'
                     color='greys.200'>Shop</Button>
                   </ButtonGroup>
-                  <HStack spacing="4">
+                  <HStack spacing="6">
                     {/* TODO: create logout route/logic */}
-                    <Button color='#171923' variant="ghost">Log out</Button>
+                    <Button color='black' variant='ghost' _hover={'ghost'}>Log out</Button>
                   </HStack>
                 </Flex>
               ) : (
-                <IconButton
-                  variant="ghost"
-                  icon={<FiMenu fontSize="1.25rem" />}
-                  aria-label="Open Menu"
-                />
+                <Menu>
+                  <MenuButton
+                    as={IconButton}
+                    variant="ghost"
+                    _focus='browns.200'
+                    // onClick='ghost'
+                    icon={<FiMenu fontSize="1.25rem" />}
+                    aria-label="Open Menu"
+                    ></MenuButton>
+                  <MenuList
+                    bg='red.800'
+                    opacity='0.5'
+                    borderColor={'red.800'}>
+                    <MenuItem
+                      as={ReactLink} to='/coop'
+                      color='greys.200'
+                      bg='red.800'
+                      opacity='0.5'>Co-Op</MenuItem>
+                    <MenuItem
+                      as={ReactLink} to='/profile'
+                      color='greys.200'>Profile</MenuItem>
+                    <MenuItem
+                      as={ReactLink} to='/shop'
+                      color='greys.200'>Shop</MenuItem>
+                  </MenuList>
+                </Menu>
               )}
             </HStack>
           </Container>
