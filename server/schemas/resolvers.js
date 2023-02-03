@@ -1,6 +1,6 @@
 // import models here
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Product, Category, Order, Badge, CoOp } = require("../models");
+const { User, Product, Order} = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -24,6 +24,7 @@ const resolvers = {
     },
     // will return all products in store
     allProducts: async () => {
+      console.log("at products query");
       return Product.find();
     },
     //return product page based on id
@@ -32,13 +33,8 @@ const resolvers = {
     },
 
     //find user based on username
-    user: async (parent, args, context) => {
-      console.log(context.user);
-      if (args) {
-        return User.findOne({ username: args.username }).populate("coOp");
-      } else if (context.user) {
-        return User.findOne({ username: context.username})
-      }
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('orders');
     },
 
     //returns all users
@@ -48,8 +44,6 @@ const resolvers = {
 
     //returns profile of signed in user
     me: async (parent, args, context) => {
-      console.log("At me query");
-      console.log(context);
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id });
 
@@ -81,9 +75,11 @@ const resolvers = {
         const newOrder = await Order.findById(order._id).populate("products");
         // console.log('New order: ' + newOrder);
         const userOrder = await User.findOneAndUpdate(
-          { id: context.user._id },
-          { $push: { orders: newOrder } }
+          { _id: context.user._id },
+          { $addToSet: { orders: newOrder._id } }
         );
+        console.log(newOrder._id);
+        console.log('User order:' + (userOrder).populate("products"));
         const { products } = newOrder;
         console.log(products);
         for (let i = 0; i < products.length; i++) {
