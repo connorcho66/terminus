@@ -101,7 +101,7 @@ const resolvers = {
           line_items,
           mode: "payment",
           success_url: `${url}?success=true`,
-          cancel_url: `${url}?success=false`,
+          cancel_url: `${url}/shop?success=false`,
         });
 
         return { session: session.id };
