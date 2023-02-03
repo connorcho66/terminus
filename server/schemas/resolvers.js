@@ -32,47 +32,59 @@ const resolvers = {
     },
 
     //find user based on username
-    user: async (parent, args) => {
-      return User.findOne({ username: args.username }).populate("coOp");
+    user: async (parent, args, context) => {
+      console.log(context.user);
+      if (args) {
+        return User.findOne({ username: args.username }).populate("coOp");
+      } else if (context.user) {
+        return User.findOne({ username: context.username})
+      }
     },
 
     //returns all users
-    users: async() => {
-        return User.find()
+    users: async () => {
+      return User.find();
     },
 
     //returns profile of signed in user
     me: async (parent, args, context) => {
-      // if (context.user) {
-        const user = await User.findOne({ _id: args.userId }).populate('coOp');
+      console.log("At me query");
+      console.log(context);
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id });
 
         return user;
-      // }
+      }
 
-      // throw new AuthenticationError("Not logged in");
+      throw new AuthenticationError("Not logged in");
     },
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
+          path: "orders.products",
+          populate: "category",
         });
 
         return user.orders.id(_id);
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
     checkout: async (parent, args, context) => {
       try {
         console.log(args);
+        console.log(context.user);
         const url = new URL(context.headers.referer).origin;
         const order = await Order.create({ products: args.products });
         console.log(order);
         const line_items = [];
-        const newOrder = await Order.findById(order._id).populate('products')
+        const newOrder = await Order.findById(order._id).populate("products");
         // console.log('New order: ' + newOrder);
-        const { products } = newOrder
+        const userOrder = await User.findOneAndUpdate(
+          { id: context.user._id },
+          { $push: { orders: newOrder } }
+        );
+        const { products } = newOrder;
         console.log(products);
         for (let i = 0; i < products.length; i++) {
           const product = await stripe.products.create({
@@ -80,16 +92,16 @@ const resolvers = {
             description: products[i].description,
             images: [`${url}/images/${products[i].image}`],
           });
-  
+
           console.log(products);
           console.log(products[i].price);
-          const unitPrice = await Math.floor(products[i].price * 100)
+          const unitPrice = await Math.floor(products[i].price * 100);
           const price = await stripe.prices.create({
             product: product.id,
             unit_amount: unitPrice,
             currency: "usd",
           });
-  
+
           line_items.push({
             price: price.id,
             quantity: 1,
@@ -100,7 +112,7 @@ const resolvers = {
           payment_method_types: ["card"],
           line_items,
           mode: "payment",
-          success_url: `${url}?success=true`,
+          success_url: `${url}/success?success=true`,
           cancel_url: `${url}/shop?success=false`,
         });
 
@@ -137,12 +149,12 @@ const resolvers = {
 
     //adds a badge to the users array of badges
     addBadgeToUser: async (parent, args) => {
-        console.log(args);
+      console.log(args);
       const user = await User.findOneAndUpdate(
         { _id: args.userId },
         { $addToSet: { badges: args.badgeId } },
         { new: true }
-      ).populate('badges');
+      ).populate("badges");
 
       console.log(user);
       return user;
@@ -150,15 +162,15 @@ const resolvers = {
 
     addCoOpToUser: async (parent, args) => {
       console.log(args);
-    const user = await User.findOneAndUpdate(
-      { _id: args.userId },
-      { $set: {coOp: args.coOpId}  },
-      { new: true }
-    ).populate('badges');
+      const user = await User.findOneAndUpdate(
+        { _id: args.userId },
+        { $set: { coOp: args.coOpId } },
+        { new: true }
+      ).populate("badges");
 
-    console.log(user);
-    return user;
-  },
+      console.log(user);
+      return user;
+    },
 
     addOrder: async (parent, args, context) => {
       if (context.user) {
@@ -194,7 +206,7 @@ const resolvers = {
       );
     },
 
-    login: async (parent, {username, password}) => {
+    login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });
 
       if (!user) {
@@ -210,7 +222,7 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
+    },
   },
 };
 
