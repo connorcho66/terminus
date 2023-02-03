@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME, QUERY_SINGLE_USER } from '../utils/queries';
+import { useQuery } from '@apollo/client';
+import {QUERY_SINGLE_USER} from '../utils/queries';
 import {
   Stack,
   Flex,
@@ -14,13 +14,20 @@ import {
   Link,
   Spacer
 } from '@chakra-ui/react';
+import Auth from '../utils/Auth';
 
 export default function Success() {
-    
-    const {loading, data} = useQuery(QUERY_SINGLE_USER)
+  
+  const currentUN = Auth.getProfile().data.username
 
-    const user = data?.user || 'No user found'
-    console.log(user);
+  const {loading, data} = useQuery(QUERY_SINGLE_USER, {
+    variables: {username: currentUN}
+  })
+
+
+  loading ? console.log('loading') : console.log(data);
+
+
 
     return (
       <Flex

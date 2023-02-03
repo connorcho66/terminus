@@ -62,7 +62,9 @@ export const QUERY_SINGLE_USER = gql`
         user(username: $username){
             _id
             username
-            email
+            orders {
+              _id
+            }
             coOp {
                 name
             }
