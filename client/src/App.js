@@ -1,4 +1,5 @@
 import React from "react";
+import { SlBasket } from 'react-icons/sl';
 // import custom fonts
 import "@fontsource/nosifer";
 import "@fontsource/butcherman";
