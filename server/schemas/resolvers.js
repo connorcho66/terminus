@@ -1,6 +1,6 @@
 // import models here
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Product, Category, Order, Badge, CoOp } = require("../models");
+const { User, Product, Order} = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -24,6 +24,7 @@ const resolvers = {
     },
     // will return all products in store
     allProducts: async () => {
+      console.log("at products query");
       return Product.find();
     },
     //return product page based on id
@@ -48,8 +49,6 @@ const resolvers = {
 
     //returns profile of signed in user
     me: async (parent, args, context) => {
-      console.log("At me query");
-      console.log(context);
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id });
 

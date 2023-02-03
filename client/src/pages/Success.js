@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME, QUERY_SINGLE_USER } from '../utils/queries';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME} from '../utils/queries';
 
 export default function Success() {
     
-    const {loading, data} = useQuery(QUERY_SINGLE_USER)
+    const {loading, data} = useQuery(QUERY_ME)
 
-    const user = data?.user || 'No user found'
-    console.log(user);
+    const user = data?.me || 'No user'
+
+    console.log(user)
 
     return (
       <div>
