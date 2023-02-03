@@ -25,7 +25,7 @@ import Shop from './pages/Shop'
 import CoOp from './pages/CoOp';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Profile from './pages/Profile';
+import Profile from "./pages/Profile";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
