@@ -65,12 +65,15 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       try {
+        console.log(args);
         const url = new URL(context.headers.referer).origin;
         const order = await Order.create({ products: args.products });
+        console.log(order);
         const line_items = [];
         const newOrder = await Order.findById(order._id).populate('products')
         // console.log('New order: ' + newOrder);
         const { products } = newOrder
+        console.log(products);
         for (let i = 0; i < products.length; i++) {
           const product = await stripe.products.create({
             name: products[i].name,
@@ -78,10 +81,12 @@ const resolvers = {
             images: [`${url}/images/${products[i].image}`],
           });
   
+          console.log(products);
           console.log(products[i].price);
+          const unitPrice = await Math.floor(products[i].price * 100)
           const price = await stripe.prices.create({
             product: product.id,
-            unit_amount: products[i].price * 100,
+            unit_amount: unitPrice,
             currency: "usd",
           });
   
