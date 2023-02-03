@@ -38,7 +38,7 @@ export default function Product({ product }) {
         <Text
           mt='2'
           mb='2'
-          fontFamily='h3'
+          fontFamily='mono'
           textAlign={'center'}
           color={'greys.200'}
           >{product.description}</Text>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import Auth from '../utils/Auth';
+import Auth from '../utils/Auth.js';
 import { LOGIN } from '../utils/mutations';
 import {
     Input,
@@ -72,9 +72,8 @@ const Login = () => {
               color={'greys.200'}
               fontWeight={700}
               lineHeight={1.2}
-            //   fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}
               textShadow='5px .5px #822727'
-              fontSize='h1'
+              fontSize={{ base: '50px', sm: '60px', md: '85px', lg: '120px' }}
               fontFamily='h1'>
               login
             </Text>
