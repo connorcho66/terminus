@@ -74,12 +74,12 @@ const resolvers = {
         const line_items = [];
         const newOrder = await Order.findById(order._id).populate("products");
         // console.log('New order: ' + newOrder);
-        const userOrder = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { orders: newOrder._id } }
-        );
-        console.log(newOrder._id);
-        console.log('User order:' + (userOrder).populate("products"));
+        // const userOrder = await User.findOneAndUpdate(
+        //   { _id: context.user._id },
+        //   { $addToSet: { orders: newOrder._id } }
+        // );
+        // console.log(newOrder._id);
+        // console.log('User order:' + (userOrder).populate("products"));
         const { products } = newOrder;
         console.log(products);
         for (let i = 0; i < products.length; i++) {

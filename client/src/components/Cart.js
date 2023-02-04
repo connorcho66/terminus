@@ -181,7 +181,6 @@ const Cart = () => {
           </DrawerBody>
 
           <DrawerFooter>
-            {Auth.loggedIn() ? (
               <Button
                 onClick={submitCheckout}
                 fontFamily="h2"
@@ -191,15 +190,6 @@ const Cart = () => {
               >
                 Checkout
               </Button>
-            ) : (
-              // make Text el
-              <Link 
-                color="red.800" 
-                as={ReactLink}
-                to='/profile'
-                fontFamily='mono'>
-                  Please login</Link>
-            )}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
