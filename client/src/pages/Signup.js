@@ -132,7 +132,7 @@ const Signup = () => {
                             <Link 
                               color="red.800" 
                               as={ReactLink}
-                              to='/profile'
+                              to='/login'
                               fontFamily='mono'>
                               Login
                             </Link>
