@@ -27,42 +27,49 @@ const Profile = () => {
   return (
     <>
       <Nav />
-      <Box
-        as="main"
-        height="100vh"
-        padding="1rem"
-        backgroundColor="RGBA(0, 0, 0, 0.80)"
-      >
-          <Box
-            direction={{ base: "column", sm: "row" }}
-            overflow="hidden"
-            variant="outline"
-            borderWidth="1px"
-            borderRadius="lg"
-          >
-            <Stack>
-              <Image
-                objectFit="cover"
-                maxW={{ base: "100%", sm: "150px" }}
-                src="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png"
-                alt="Profile placeholder"
-                borderRadius="50%"
-              />
-            </Stack>
-            <VStack>
-              <Text fontFamily="h1">Username</Text>
-              <Text fontFamily="h1">Email</Text>
-              <Text fontFamily="h1">Co-Op: Coming soon!</Text>
-              <HStack w='90%'>
-              {badgeImgs.map((img) => (
-                <Image borderRadius='full'
-                boxSize='75px' src={img} />
-              ))}
-              </HStack>
-            </VStack>
-          </Box>
-        <Box />
-      </Box>
+        <Box
+          as="main"
+          height="100vh"
+          padding="1rem"
+          backgroundColor="RGBA(0, 0, 0, 0.80)"
+        >
+          
+            <Box
+              direction={{ base: "column", sm: "row" }}
+              overflow="hidden"
+              variant="outline"
+              borderWidth="1px"
+              borderRadius="lg"
+            >
+              <VStack>
+                <Box
+                mt="25px"
+                mb="20px"
+                >
+                  <Image
+                    boxSize='200px'
+                    objectFit="cover"
+                    // maxW={{ base: "100px", sm: "150px" }}
+                    src="https://i.pinimg.com/originals/78/5d/ea/785dea225929ab34ca9f663af246d862.png"
+                    alt="Profile placeholder"
+                    borderRadius="100%"
+                  />
+                </Box>
+                <Text fontFamily="h1" color={'white'} fontSize='18px'>Username: Coming soon!</Text>
+                <Text fontFamily="h1" color={'white'} fontSize='18px'>Email: Coming soon!</Text>
+                <Text fontFamily="h1" color={'white'} fontSize='18px'>Co-Op: Coming soon!</Text>
+                <Box>
+                  <HStack w='100%'>
+                  {badgeImgs.map((img) => (
+                    <Image borderRadius='full'
+                    boxSize='90px' src={img} />
+                  ))}
+                  </HStack>
+                </Box>
+              </VStack>
+            </Box>
+          <Box />
+        </Box>
     </>
   );
 };
