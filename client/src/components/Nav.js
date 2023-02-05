@@ -20,6 +20,7 @@ import {
     MenuDivider,
   } from '@chakra-ui/react'
   import { FiMenu } from 'react-icons/fi'
+  import Auth from "../utils/Auth"
 
 function Nav() {
     const isDesktop = useBreakpointValue({ base: false, sm: false, md: true, lg: true })
@@ -61,7 +62,7 @@ function Nav() {
                   </ButtonGroup>
                   <HStack spacing="6">
                     {/* TODO: create logout route/logic */}
-                    <Button color='black' variant='ghost' _hover={'ghost'}>Log out</Button>
+                    <Button color='black' variant='ghost' _hover={'ghost'} onClick={() => Auth.logout()} to='/'>Log out</Button>
                   </HStack>
                 </Flex>
               ) : (
