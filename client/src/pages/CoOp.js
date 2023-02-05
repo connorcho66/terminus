@@ -18,14 +18,20 @@ export default function CoOp(){
         as="main"
         height="100vh"
         padding="1rem"
-        backgroundColor="RGBA(0, 0, 0, 0.80)"
-        >
-          <Text
-            fontFamily={'h1'}
-            color='white'
-            align={'center'}
-            fontSize={{ base: '13px', sm: '20px', md: '30px', lg: '60px' }}
-            >Co-Op is coming in the future</Text>
+        backgroundColor="RGBA(0, 0, 0, 0.80)">
+          <Box
+            border='1px'
+            borderColor='browns.200'
+            borderRadius='lg'>
+            <Text
+              fontFamily={'h1'}
+              color='greys.200'
+              align={'center'}
+              mt='7'
+              mb='7'
+              fontSize={{ base: '13px', sm: '20px', md: '30px', lg: '60px' }}
+              >Co-Op is coming soon</Text>
+          </Box>
         </Box>
       </>
     )

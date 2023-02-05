@@ -1,19 +1,13 @@
 import React, { useEffect } from 'react';
-import { Link as ReactLink } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import {QUERY_SINGLE_USER} from '../utils/queries';
+// import { Link as ReactLink } from 'react-router-dom';
+// import { useQuery } from '@apollo/client';
+// import {QUERY_SINGLE_USER} from '../utils/queries';
 import {
-  Stack,
   Flex,
   Text,
   VStack,
   useBreakpointValue,
-  Container,
-  Box,
-  Button,
-  Link,
-  Spacer
-} from '@chakra-ui/react';
+  Box } from '@chakra-ui/react';
 
 export default function Success() {
 

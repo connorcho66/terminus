@@ -30,7 +30,8 @@ const Shop = () => {
           <Text
             fontFamily='h2'
             fontSize={{ base: '13px', sm: '20px', md: '30px', lg: '45px' }}
-            color={'greys.200'}>Add to your Co-Op's Arsenal</Text>
+            color={'greys.200'}
+            pr={{ base:'2', sm:'2', md:'15', lg:'20' }}>Add to your Co-Op's Arsenal</Text>
             <Cart />
         </HStack>
         {loading ? <div>Loading...</div> : <ProductList products={products} />}

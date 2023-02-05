@@ -7,7 +7,6 @@ import {
     Input,
     FormControl,
     FormLabel,
-    // FormHelperText,
     Stack,
     Flex,
     Text,
@@ -38,14 +37,6 @@ const Login = () => {
         const token = mutationResponse.data.login.token;
         Auth.login(token);
     };
-
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setFormState({
-    //         ...formState,
-    //         [name]: value,
-    //     });
-    // };
 
     return (
         <Flex

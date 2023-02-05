@@ -7,7 +7,6 @@ import {
     Input,
     FormControl,
     FormLabel,
-    // FormHelperText,
     Stack,
     Flex,
     Text,
@@ -21,7 +20,6 @@ import {
   } from '@chakra-ui/react';
 
 const Signup = () => {
-    // const [formState, setFormState] = useState({ email: '', passwrod: '' });
     const [addUser] = useMutation(ADD_USER);
 
     const handleFormSubmit = async (event) => {
@@ -36,15 +34,6 @@ const Signup = () => {
         const token = mutationResponse.data.addUser.token
         Auth.login(token);
     };
-
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setFormState({
-    //         ...formState,
-    //         [name]: value,
-    //     });
-    // };
-
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -81,12 +70,6 @@ const Signup = () => {
             </Text>
             <Container borderRadius='md' bg='greys.100' centerContent>
                 <Box py={10}>
-                    {/* <FormControl>
-                        <FormLabel htmlFor='email'>Email address</FormLabel>
-                        <Input id='email' type='email' />
-                        <FormLabel mt={2} htmlFor='password'>Password</FormLabel>
-                        <Input pr='3rem' type={'password'} id='password' />
-                    </FormControl> */}
                     <form onSubmit={handleFormSubmit}>
                         <FormControl id='name' isRequired>
                             <FormLabel fontFamily='mono'>Username</FormLabel>
@@ -132,7 +115,7 @@ const Signup = () => {
                             <Link 
                               color="red.800" 
                               as={ReactLink}
-                              to='/profile'
+                              to='/login'
                               fontFamily='mono'>
                               Login
                             </Link>

@@ -14,17 +14,12 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    MenuItemOption,
-    MenuGroup,
-    MenuOptionGroup,
-    MenuDivider,
   } from '@chakra-ui/react'
   import { FiMenu } from 'react-icons/fi'
 
 function Nav() {
     const isDesktop = useBreakpointValue({ base: false, sm: false, md: true, lg: true })
     return (
-    //   <Box as="section" pb={{ base: '12', md: '24' }}>
         <Box as="nav" 
           bgGradient='linear(to-b, red.800, browns.400)'
           w={'100%'}
@@ -49,19 +44,34 @@ function Nav() {
               {isDesktop ? (
                 <Flex justify="space-between" flex="1">
                   <ButtonGroup variant="link" spacing="8">
-                    {/* {['Co-Op', 'Profile', 'Store'].map((item) => (
-                      <Button as='a' color='greys.200' key={item}>{item}</Button>
-                    ))} */}
-                    <Button key='Co-Op' as={ReactLink} to='/coop'
-                    color='greys.200'>Co-Op</Button>
-                    <Button key='Profile' as={ReactLink} to='/profile'
-                    color='greys.200'>Profile</Button>
-                    <Button key='Shop' as={ReactLink} to='/shop'
-                    color='greys.200'>Shop</Button>
+                    <Button 
+                      key='Co-Op' 
+                      as={ReactLink} 
+                      to='/coop'
+                      fontFamily='mono'
+                      mr='-4'
+                      color='greys.200'>Co-Op</Button>
+                    <Button 
+                      key='Profile' 
+                      as={ReactLink} 
+                      to='/profile'
+                      fontFamily='mono'
+                      mr='-4'
+                      color='greys.200'>Profile</Button>
+                    <Button 
+                      key='Shop' 
+                      as={ReactLink} 
+                      to='/shop'
+                      fontFamily='mono'
+                      color='greys.200'>Shop</Button>
                   </ButtonGroup>
                   <HStack spacing="6">
                     {/* TODO: create logout route/logic */}
-                    <Button color='black' variant='ghost' _hover={'ghost'}>Log out</Button>
+                    <Button 
+                      color='black' 
+                      variant='ghost'
+                      fontFamily='mono' 
+                      _hover={'ghost'}>Log out</Button>
                   </HStack>
                 </Flex>
               ) : (
@@ -70,7 +80,6 @@ function Nav() {
                     as={IconButton}
                     variant="ghost"
                     _focus='browns.200'
-                    // onClick='ghost'
                     icon={<FiMenu fontSize="1.25rem" />}
                     aria-label="Open Menu"
                     ></MenuButton>
@@ -95,7 +104,6 @@ function Nav() {
             </HStack>
           </Container>
         </Box>
-    //   </Box>
     )
   };
 
