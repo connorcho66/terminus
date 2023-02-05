@@ -16,6 +16,7 @@ import {
     MenuItem,
   } from '@chakra-ui/react'
   import { FiMenu } from 'react-icons/fi'
+  import Auth from "../utils/Auth"
 
 function Nav() {
     const isDesktop = useBreakpointValue({ base: false, sm: false, md: true, lg: true })
@@ -71,7 +72,7 @@ function Nav() {
                       color='black' 
                       variant='ghost'
                       fontFamily='mono' 
-                      _hover={'ghost'}>Log out</Button>
+                      _hover={'ghost'} onClick={() => Auth.logout()} to='/'>Log out</Button>
                   </HStack>
                 </Flex>
               ) : (
