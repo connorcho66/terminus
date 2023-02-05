@@ -14,20 +14,13 @@ import {
   Link,
   Spacer
 } from '@chakra-ui/react';
-import Auth from '../utils/Auth';
 
 export default function Success() {
-  
-  const currentUN = Auth.getProfile().data.username
-
-  const {loading, data} = useQuery(QUERY_SINGLE_USER, {
-    variables: {username: currentUN}
-  })
 
 
-  loading ? console.log('loading') : console.log(data);
-
-
+    setTimeout(() => {
+      window.location.assign('/shop')
+    }, 3000)
 
     return (
       <Flex
@@ -68,7 +61,7 @@ export default function Success() {
                 color='red.800'
                 p='2' 
                 fontSize={{ base: '10px', sm: '14px', md: '18px', lg: '20px' }}
-                textAlign={'center'}>You are being redirected to your Profile page</Text>
+                textAlign={'center'}>You are being redirected to our shop</Text>
             </Box>
         </VStack>
       </Flex>
