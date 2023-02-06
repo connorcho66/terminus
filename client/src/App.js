@@ -59,32 +59,16 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/coop" element={<CoOp />} />
                 <Route path="/shop" element={<Shop />} />
-                {/* <Route 
-            path="/Profile/:id" 
-            element={<Profile />}
-            /> */}
-          <Route
-            path="/signup"
-            element={<Signup />}
-          />
-          <Route
-            path="/login"
-            element={<Login />}
-          />
-          <Route
-            path="/profile"
-            element={<Profile />}
-          />
-          <Route
-            path="/success"
-            element={<Success />}
-          />
-        </Routes>
-      </div>
-      </ShopProvider>
-    </Router> 
-  </ApolloProvider>
-</ChakraProvider>
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/success" element={<Success />} />
+             </Routes>
+           </div>
+          </ShopProvider>
+        </Router> 
+      </ApolloProvider>
+    </ChakraProvider>
   );
 }
 
